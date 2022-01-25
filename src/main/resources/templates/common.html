@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="common_header">
+    <link rel="stylesheet" href="css/semantic-ui/semantic.min.css" th:href="@{/css/semantic-ui/semantic.min.css}">
+    <link rel="stylesheet" href="css/common.css" th:href="@{/css/common.css}">
+
+
+    <script type="text/javascript" src="js/jquery-3.6.0.min.js" th:src="@{/js/jquery-3.6.0.min.js}"></script>
+    <script type="text/javascript" src="js/semantic.js" th:src="@{/js/semantic.js}"></script>
+
+    <script type="text/javascript" src="js/common.js" th:src="@{/js/common.js}"></script>
+
+</head>
+<body>
+<div th:fragment="header" id="header-outline">
+    <div class="ui menu">
+        <div class="placeholder-div">
+            <a th:href="@{/}">UI 文档</a>
+        </div>
+        <div class="header item" id="header">
+            <a class="launch icon item slide-hide">
+                <i class="content icon"></i>
+            </a>
+        </div>
+        <div class="menu">
+            <a class="item" href="https://www.baidu.com">百度</a>
+        </div>
+        <div class="menu">
+            <a class="item" href="https://www.bilibili.com/">哔哩哔哩</a>
+        </div>
+        <div class="menu">
+            <a class="item" href="https://cn.vuejs.org/v2/api">Vue API</a>
+        </div>
+        <div class="ui dropdown item right" tabindex="0">
+            <img id="header-item-img" sec:authorize="isAuthenticated()" th:src="@{/img/user.jpg}" alt="userImage">
+            <span id="header-item-name" sec:authorize="isAuthenticated()" sec:authentication="name"></span>
+            <span sec:authorize="!isAuthenticated()">未登录</span>
+            <i class="dropdown icon"></i>
+            <div class="menu" tabindex="-1" id="header-info">
+                <div class="item" id="header-info-first">
+                    <div id="header-userImg"><a href="#"><img th:src="@{/img/user.jpg}" alt="userImage" /></a></div>
+                    <span id="header-userName" sec:authorize="isAuthenticated()" sec:authentication="name"></span>
+                    <span id="header-userName" sec:authorize="!isAuthenticated()">未登录</span>
+                    <span>最后登录：12:00 PM</span>
+                </div>
+                <div class="divider"></div>
+                <div class="item" id="header-info-passwordChange">
+                    <a th:href="@{/logout}">信息修改</a>
+                </div>
+                <div class="item" id="header-info-logout">
+                    <a sec:authorize="isAuthenticated()" th:href="@{/logout}">注销</a>
+                    <a sec:authorize="!isAuthenticated()" th:href="@{/login}">登录</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div th:fragment="slider">
+    <div class="ui vertical sidebar menu left overlay visible" id="toc" style="">
+
+        <div class="item ui styled accordion slider-mux-content">
+            <div class="active title slider-fa-text">
+                <i class="dropdown icon"></i>
+                介绍
+            </div>
+            <div class="active content">
+                <p><a class="item slider-item-text" th:href="@{/account/manage}">account</a></p>
+                <p><a class="item slider-item-text" th:href="@{/monitor/manage}">monitor</a></p>
+                <p><a class="item slider-item-text" th:href="@{/project/manage}">project</a></p>
+                <p><a class="item slider-item-text" th:href="@{/logout}">退出</a></p>
+            </div>
+        </div>
+        <div class="item ui styled accordion slider-mux-content">
+            <div class="title slider-fa-text">
+                <i class="dropdown icon"></i>
+                介绍
+            </div>
+            <div class="content">
+                <p><a class="item slider-item-text" href="/introduction/integrations.html">集成 </a></p>
+                <p><a class="item slider-item-text" href="/introduction/build-tools.html">构建工具 </a></p>
+                <p><a class="item slider-item-text" href="/introduction/advanced-usage.html">配置 </a></p>
+                <p><a class="item slider-item-text" href="/introduction/glossary.html">词汇表 </a></p>
+            </div>
+        </div>
+        <div class="item ui styled accordion slider-mux-content">
+            <div class="title slider-fa-text">
+                <i class="dropdown icon"></i>
+                介绍
+            </div>
+            <div class="content">
+                <p><a class="item slider-item-text" href="/introduction/integrations.html">集成 </a></p>
+                <p><a class="item slider-item-text" href="/introduction/build-tools.html">构建工具 </a></p>
+                <p><a class="item slider-item-text" href="/introduction/advanced-usage.html">配置 </a></p>
+                <p><a class="item slider-item-text" href="/introduction/glossary.html">词汇表 </a></p>
+            </div>
+        </div>
+        <div class="item ui styled accordion slider-mux-content">
+            <div class="title slider-fa-text">
+                <i class="dropdown icon"></i>
+                介绍
+            </div>
+            <div class="content">
+                <p><a class="item slider-item-text" href="/introduction/integrations.html">集成 </a></p>
+                <p><a class="item slider-item-text" href="/introduction/build-tools.html">构建工具 </a></p>
+                <p><a class="item slider-item-text" href="/introduction/advanced-usage.html">配置 </a></p>
+                <p><a class="item slider-item-text" href="/introduction/glossary.html">词汇表 </a></p>
+            </div>
+        </div>
+        <div class="item ui styled accordion slider-mux-content">
+            <div class="title slider-fa-text">
+                <i class="dropdown icon"></i>
+                介绍
+            </div>
+            <div class="content">
+                <p><a class="item slider-item-text" href="/introduction/integrations.html">集成 </a></p>
+                <p><a class="item slider-item-text" href="/introduction/build-tools.html">构建工具 </a></p>
+                <p><a class="item slider-item-text" href="/introduction/advanced-usage.html">配置 </a></p>
+                <p><a class="item slider-item-text" href="/introduction/glossary.html">词汇表 </a></p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

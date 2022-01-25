@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Deformation_monitoring_system:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>Deformation_monitoring_system</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="Deformation_monitoring_system-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="Deformation_monitoring_system:war exploded" />
+    </root>
+  </artifact>
+</component>
