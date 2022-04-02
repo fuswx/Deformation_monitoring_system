@@ -5,7 +5,7 @@
 @import url('../../fonts/css/font-awesome.min.css');
 
 body {
-    background: #424f63;
+    background: linear-gradient(200deg,cornflowerblue,#f3f3f3);
     font-family: 'Open Sans', sans-serif;
     color: #7a7676;
     line-height: 20px;
@@ -47,7 +47,6 @@ hr {
 -------------------------------*/
 
 .login-body {
-    background: cornflowerblue url("../../img/bg.jpeg") no-repeat fixed center;
     background-size: cover;
     width: 100%;
     height: 100%;
@@ -146,7 +145,6 @@ hr {
     transition: all 0.3s;
     font-size: 30px;
 }
-
 .form-signin .btn-login:hover {
     background: #688ac2;
     -webkit-transition: all 0.3s;

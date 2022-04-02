@@ -1,6 +1,6 @@
 let slider_margin_left=0.14;
 function sliderHide(){
-    $("#toc").transition('scale')
+    $("#toc").transition('zoom',500)
     $("#toc").removeClass("overlay visible")
     $("#main-content").stop().animate({right: "0"},200,function (){
         $(".placeholder-div a").text("UI")
@@ -14,7 +14,7 @@ function sliderDisplay(){
         $(".placeholder-div a").text("UI文档")
     })
     $(".placeholder-div").width($("#header-outline").width()*slider_margin_left)
-    $("#toc").transition('scale')
+    $("#toc").transition('zoom',500)
     $("#toc").addClass("overlay visible")
 }
 $(document).ready(function(){

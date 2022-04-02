@@ -5,8 +5,10 @@
   margin: 0;
   padding: 0;
 }
+
 body {
   background-color: #f4f4f4;
+  overflow-x: auto;
 }
 ul {
   text-decoration: none;
@@ -106,6 +108,12 @@ p {
   transition: @transition-all;
   font-size: 18px;
   font-weight: 700;
+  min-width: 100px;
+}
+//header用户名字（最上面）
+#header-item-name:hover,
+#header-item-name-none:hover {
+  background-color: rgba(0,0,0,0);
 }
 //item小竖杠
 .ui.menu .item:before {
@@ -216,6 +224,7 @@ p {
   border-top: none;
   top: @header-height;
   z-index: 1000;
+  min-width: 100px;
 }
 //slider整体滚动条
 .ui.left.sidebar#toc::-webkit-scrollbar {
@@ -254,6 +263,11 @@ p {
   color: cornflowerblue;
   background-color: rgba(100, 149, 237,0.2);
 }
+//slider个体之间的小横条
+.ui.styled.accordion, .ui.styled.accordion .accordion {
+  -webkit-box-shadow:none;
+  box-shadow: none;
+}
 /*
 //slider标题
 .ui.vertical.menu>.item:first-child {
@@ -278,14 +292,15 @@ p {
 }
 */
 /*slider模块结束*/
-
 //初始化main-content
 #main-content {
   width: 100%-@slider-margin-left;
+  min-width: 600px;
   position: absolute;
   right: 0;
   top: @header-height;
   z-index: 1;
   transition: width 0.5s linear;
   margin: 0 auto;
+  padding: 10px 0!important;
 }

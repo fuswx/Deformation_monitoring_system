@@ -23,7 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         //请求授权的规则
         http.authorizeRequests()
-                .antMatchers("/","/index","/toLogin").permitAll()
+                .antMatchers("/","/index","/toLogin","/device/**").permitAll()
                 .antMatchers("/account/**","/user/account/**").hasAnyRole("account","root")
                 .antMatchers("/monitor/**","/user/monitor/**").hasAnyRole("monitor","root")
                 .antMatchers("/project/**","/user/project/**").hasAnyRole("project","root");

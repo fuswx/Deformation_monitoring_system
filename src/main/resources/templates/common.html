@@ -2,12 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="common_header">
+
     <link rel="stylesheet" href="css/semantic-ui/semantic.min.css" th:href="@{/css/semantic-ui/semantic.min.css}">
     <link rel="stylesheet" href="css/common.css" th:href="@{/css/common.css}">
 
-
     <script type="text/javascript" src="js/jquery-3.6.0.min.js" th:src="@{/js/jquery-3.6.0.min.js}"></script>
     <script type="text/javascript" src="js/semantic.js" th:src="@{/js/semantic.js}"></script>
+    <script src="/js/echarts.min.js" th:src="@{/js/echarts.min.js}" type="text/javascript"></script>
 
     <script type="text/javascript" src="js/common.js" th:src="@{/js/common.js}"></script>
 
@@ -35,13 +36,13 @@
         <div class="ui dropdown item right" tabindex="0">
             <img id="header-item-img" sec:authorize="isAuthenticated()" th:src="@{/img/user.jpg}" alt="userImage">
             <span id="header-item-name" sec:authorize="isAuthenticated()" sec:authentication="name"></span>
-            <span sec:authorize="!isAuthenticated()">未登录</span>
+            <span id="header-item-name-none" sec:authorize="!isAuthenticated()">未登录</span>
             <i class="dropdown icon"></i>
             <div class="menu" tabindex="-1" id="header-info">
                 <div class="item" id="header-info-first">
                     <div id="header-userImg"><a href="#"><img th:src="@{/img/user.jpg}" alt="userImage" /></a></div>
                     <span id="header-userName" sec:authorize="isAuthenticated()" sec:authentication="name"></span>
-                    <span id="header-userName" sec:authorize="!isAuthenticated()">未登录</span>
+                    <span id="header-userName-none" sec:authorize="!isAuthenticated()">未登录</span>
                     <span>最后登录：12:00 PM</span>
                 </div>
                 <div class="divider"></div>
@@ -59,7 +60,7 @@
 </div>
 
 <div th:fragment="slider">
-    <div class="ui vertical sidebar menu left overlay visible" id="toc" style="">
+    <div class="ui vertical sidebar menu left overlay visible" id="toc">
 
         <div class="item ui styled accordion slider-mux-content">
             <div class="active title slider-fa-text">
@@ -79,10 +80,10 @@
                 介绍
             </div>
             <div class="content">
-                <p><a class="item slider-item-text" href="/introduction/integrations.html">集成 </a></p>
-                <p><a class="item slider-item-text" href="/introduction/build-tools.html">构建工具 </a></p>
-                <p><a class="item slider-item-text" href="/introduction/advanced-usage.html">配置 </a></p>
-                <p><a class="item slider-item-text" href="/introduction/glossary.html">词汇表 </a></p>
+                <p><a class="item slider-item-text" href="#">集成 </a></p>
+                <p><a class="item slider-item-text" href="#">构建工具 </a></p>
+                <p><a class="item slider-item-text" href="#">配置 </a></p>
+                <p><a class="item slider-item-text" href="#">词汇表 </a></p>
             </div>
         </div>
         <div class="item ui styled accordion slider-mux-content">
@@ -91,10 +92,10 @@
                 介绍
             </div>
             <div class="content">
-                <p><a class="item slider-item-text" href="/introduction/integrations.html">集成 </a></p>
-                <p><a class="item slider-item-text" href="/introduction/build-tools.html">构建工具 </a></p>
-                <p><a class="item slider-item-text" href="/introduction/advanced-usage.html">配置 </a></p>
-                <p><a class="item slider-item-text" href="/introduction/glossary.html">词汇表 </a></p>
+                <p><a class="item slider-item-text" href="#">集成 </a></p>
+                <p><a class="item slider-item-text" href="#">构建工具 </a></p>
+                <p><a class="item slider-item-text" href="#">配置 </a></p>
+                <p><a class="item slider-item-text" href="#">词汇表 </a></p>
             </div>
         </div>
         <div class="item ui styled accordion slider-mux-content">
@@ -103,10 +104,10 @@
                 介绍
             </div>
             <div class="content">
-                <p><a class="item slider-item-text" href="/introduction/integrations.html">集成 </a></p>
-                <p><a class="item slider-item-text" href="/introduction/build-tools.html">构建工具 </a></p>
-                <p><a class="item slider-item-text" href="/introduction/advanced-usage.html">配置 </a></p>
-                <p><a class="item slider-item-text" href="/introduction/glossary.html">词汇表 </a></p>
+                <p><a class="item slider-item-text" href="#">集成 </a></p>
+                <p><a class="item slider-item-text" href="#">构建工具 </a></p>
+                <p><a class="item slider-item-text" href="#">配置 </a></p>
+                <p><a class="item slider-item-text" href="#">词汇表 </a></p>
             </div>
         </div>
         <div class="item ui styled accordion slider-mux-content">
@@ -115,10 +116,10 @@
                 介绍
             </div>
             <div class="content">
-                <p><a class="item slider-item-text" href="/introduction/integrations.html">集成 </a></p>
-                <p><a class="item slider-item-text" href="/introduction/build-tools.html">构建工具 </a></p>
-                <p><a class="item slider-item-text" href="/introduction/advanced-usage.html">配置 </a></p>
-                <p><a class="item slider-item-text" href="/introduction/glossary.html">词汇表 </a></p>
+                <p><a class="item slider-item-text" href="#">集成 </a></p>
+                <p><a class="item slider-item-text" href="#">构建工具 </a></p>
+                <p><a class="item slider-item-text" href="#">配置 </a></p>
+                <p><a class="item slider-item-text" href="#">词汇表 </a></p>
             </div>
         </div>
 
