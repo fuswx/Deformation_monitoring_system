@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>监测管理</title>
+    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js" type="text/javascript"></script>
+<!--    <script src="/js/echarts.min.js" th:src="@{/js/echarts.min.js}" type="text/javascript"></script>-->
+
     <style th:replace="common::common_header"></style>
     <link rel="stylesheet" th:href="@{/css/monitor/monitor.css}">
 </head>
@@ -15,40 +18,59 @@
 
 <div id="main-content">
     <div class="leftContent">
-        <div class="firstLine">
-            <div class="title-panel">折线图--测试</div>
+        <div class="firstLine" style="overflow-x: hidden">
+            <div class="title-panel">巷道信息</div>
             <div class="panel line" id="lineTest"></div>
         </div>
-<!--        <div class="secondLine">-->
-<!--            <div class="title-panel">饼状图&#45;&#45;测试</div>-->
-<!--            <div class="panel bar" id="pieTest"></div>-->
-<!--        </div>-->
-    </div>
-    <div class="rightContent">
-        <div class="firstLine">
-            <div class="title-panel">通知-信息</div>
-            <div class="info">
-                <article>
-                    <p>由于最近使用了一段时间的Semantic UI，在项目中做一些响应式的页面，所以对<a href="https://link.jianshu.com?t=https://semantic-ui.com/collections/grid.html#doubling" rel="nofollow" target="_blank">Semantic UI</a>的响应式布局开发有一些经验，记录在这里。</p>
-                    <p>由于最近使用了一段时间的Semantic UI，在项目中做一些响应式的页面，所以对<a href="https://link.jianshu.com?t=https://semantic-ui.com/collections/grid.html#doubling" rel="nofollow" target="_blank">Semantic UI</a>的响应式布局开发有一些经验，记录在这里。</p>
-            </article>
-            </div>
-        </div>
-        <div class="secondLine">
-            <div class="title-panel">不同屏幕的区分</div>
-            <p>这几个变量的用法还是很灵活的，例如，如果你的某个元素只在手机上显示的话，你可以使用：</p>
-            <p>这几个变量的用法还是很灵活的，例如，如果你的某个元素只在手机上显示的话，你可以使用：</p>
-            <p>这几个变量的用法还是很灵活的，例如，如果你的某个元素只在手机上显示的话，你可以使用：</p>
+
+        <div class="secondLine" style="overflow-x: hidden">
+            <div class="title-panel">压力信息</div>
+            <div class="panel line" id="lineTest2"></div>
         </div>
     </div>
 
-    <div class="showBtn"></div>
-    <div class="showBtnBox">
-        <div class="btnBoxTitle">盒子标题</div>
-        <div class="btnBoxContent">
-            <span>测试测试test</span>
+    <div class="rightContent">
+        <div class="firstLine">
+            <div class="title-panel">项目介绍</div>
+            <div class="info">
+                <p>本巷道为XXX省XXX市XXX煤矿编号XXX巷道</p>
+                <p>巷道形状：矩形</p>
+                <p>巷道面积：20.3m^2</p>
+                <p>尺寸信息：1923.063m</p>
+                <p>倾角：8°</p>
+            </div>
+        </div>
+        <div class="secondLine">
+            <div class="title-panel">实时工作状态</div>
+            <div class="realTime" id="realTime"></div>
+            <div class="text-content">
+                <div class="macStatus" id="macStatus"></div>
+            </div>
         </div>
     </div>
+
+
+    <div class="showBtn"></div>
+    <div class="showBtnBox hidden">
+        <div id="showBtnBoxClose"><i class="window close outline icon"></i></div>
+        <div class="btnBoxTitle">巷道预警</div>
+        <div class="btnBoxContent">
+            <table class="ui celled table" id="btnBoxTable">
+                <thead>
+                    <tr>
+                        <th>检测参数</th>
+                        <th>当前数值</th>
+                        <th>预警值</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="noneBox" style="display: none">
+    <span id="leftResizeFlag">false</span>
 </div>
 
 <script src="/js/monitor/monitor.js" th:src="@{/js/monitor/monitor.js}" type="text/javascript"></script>

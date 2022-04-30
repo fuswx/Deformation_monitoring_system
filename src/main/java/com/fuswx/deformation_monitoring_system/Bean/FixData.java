@@ -3,6 +3,7 @@ package com.fuswx.deformation_monitoring_system.Bean;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -15,9 +16,9 @@ public class FixData {
     private Double roadwayAngle;
     private String roadwayShape;
     private Double roadwaySizeTotal;
-    private Double roadwaySize;
     private Double pillarWidth;
-    private Double roadwayTotalTransform;
+    private Double g;
+    @DateTimeFormat(pattern = "yyyy年MM月dd日 HH:mm:ss")
     private Date FixTime;
     private Integer FixManagerId;
 

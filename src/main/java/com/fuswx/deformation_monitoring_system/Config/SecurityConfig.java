@@ -24,17 +24,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //请求授权的规则
         http.authorizeRequests()
                 .antMatchers("/","/index","/toLogin","/device/**").permitAll()
-                .antMatchers("/account/**","/user/account/**").hasAnyRole("account","root")
-                .antMatchers("/monitor/**","/user/monitor/**").hasAnyRole("monitor","root")
-                .antMatchers("/project/**","/user/project/**").hasAnyRole("project","root");
+                //.antMatchers("/toLogin","/account","/device/**").permitAll()
+                ///.antMatchers("/**").permitAll();
+                .antMatchers("/account/**","/user/account/**","/").hasAnyRole("account","root")
+                .antMatchers("/monitor/**","/user/monitor/**","/").hasAnyRole("monitor","root")
+                .antMatchers("/project/**","/user/project/**","/").hasAnyRole("project","root");
 
         //没有授权默认会到登录页面 /login
-        http.formLogin().loginPage("/toLogin").loginProcessingUrl("/login").usernameParameter("userName").passwordParameter("password").failureHandler(NRSCAuthenticationFailureHandler);
+        http.formLogin().
+                loginPage("/toLogin").
+                loginProcessingUrl("/login").
+                usernameParameter("userName").
+                passwordParameter("password").
+                failureHandler(NRSCAuthenticationFailureHandler);
 
         //关闭csrf，防止登出失败
         http.csrf().disable();
         //配置登出规则
-        http.logout().logoutSuccessUrl("/");//登出后跳回首页
+        http.logout().logoutSuccessUrl("/toLogin");//登出后跳回首页
 
         //开启记住我功能
         http.rememberMe().rememberMeParameter("remember");

@@ -3,16 +3,14 @@ package com.fuswx.deformation_monitoring_system.Controller;
 import com.fuswx.deformation_monitoring_system.Bean.FixData;
 import com.fuswx.deformation_monitoring_system.Bean.ReflectData;
 import com.fuswx.deformation_monitoring_system.Bean.VariableData;
+import com.fuswx.deformation_monitoring_system.Bean.WorkingStatus;
 import com.fuswx.deformation_monitoring_system.Service.IDeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
 
 @Controller
 @RequestMapping("/device")
@@ -26,8 +24,13 @@ public class DeviceController {
         return deviceService.getAllVariableData();
     }
 
+    @RequestMapping("/getByDaysVariableData.do")
+    public @ResponseBody ArrayList<VariableData> getByDaysVariableData(@RequestParam(defaultValue = "7",required = false,name = "days") Integer days){
+        return deviceService.getByDaysVariableData(days);
+    }
+
     @RequestMapping("/getVariableDataByDay.do")
-    public @ResponseBody ArrayList<VariableData> getVariableDataByDay(Date fromTime,Date toTime){
+    public @ResponseBody ArrayList<VariableData> getVariableDataByDay(String fromTime,String toTime) throws ParseException {
         return deviceService.getVariableDataByDay(fromTime,toTime);
     }
 
@@ -47,12 +50,6 @@ public class DeviceController {
         return deviceService.getLastReflectData();
     }
 
-    @PostMapping("/setReflectData.do")
-    @ResponseBody
-    public void setReflectData(@RequestBody ReflectData reflectData){
-        deviceService.setReflectData(reflectData);
-    }
-
     @RequestMapping("/getAllFixData.do")
     public @ResponseBody ArrayList<FixData> getAllFixDataData(){
         return deviceService.getAllFixData();
@@ -63,36 +60,8 @@ public class DeviceController {
         return deviceService.getLastFixData();
     }
 
-    @PostMapping("/setFixData.do")
-    @ResponseBody
-    public void setFixData(@RequestBody FixData fixData){
-        deviceService.setFixData(fixData);
+    @RequestMapping("/getLastWorkingStatus.do")
+    public @ResponseBody WorkingStatus getLastWorkingStatus(){
+        return deviceService.getLastWorkingStatus();
     }
-
-    /*@RequestMapping("/getAllRealTimeData.do")
-    public @ResponseBody ArrayList<RealTimeData> getAllRealTimeData(){
-        return deviceService.getAllRealTimeData();
-    }
-
-    @PostMapping("/getDataByDay.do")
-    public @ResponseBody ArrayList<StatisticsDataByDay> getDataByDay(String startTime,String endTime){
-        return deviceService.getDataByDay(startTime,endTime);
-    }
-
-    @PostMapping("/getDataByHour.do")
-    public @ResponseBody ArrayList<StatisticsDataByHour> getDataByHour(String currentTime){
-        return deviceService.getDataByHour(currentTime);
-    }
-
-    @PostMapping("/setSavedParameter.do")
-    @ResponseBody
-    public void getSavedParameter(@RequestBody SavedParameter savedParameter){
-        deviceService.setSavedParameter(savedParameter);
-    }
-
-    @ResponseBody
-    @PostMapping("/setSavedParameters.do")
-    public void getSavedParameter(@RequestParam("userId") String userId,@RequestParam("initDis") Double initDis, @RequestParam("alDis") Long alDis, @RequestParam("alDur") Long alDur, @RequestParam("accuDis") Long accuDis){
-        deviceService.setSavedParameters(userId,initDis,alDis,alDur,accuDis);
-    }*/
 }

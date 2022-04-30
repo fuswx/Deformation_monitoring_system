@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="c8c6a601-6409-450d-88a1-b638ca8a7cec" name="阿里云" url="http://www.fuswx.cn:8082">
+        <fileTransfer rootFolder="/usr/java/tomcat/apache-tomcat-9.0.54/webapps" accessType="SFTP" host="47.95.112.136" port="22" sshConfigId="382c3d02-6297-44a6-8274-10e600b3eb4f" sshConfig="root@47.95.112.136:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

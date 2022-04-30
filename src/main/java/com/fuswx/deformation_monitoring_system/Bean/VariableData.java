@@ -14,7 +14,16 @@ public class VariableData {
     private Double roadwayDepth;
     private Double crossHeadingPress;
     private Double workingFacePress;
-    private Double predictValue;
+    private Double roadwayTotalTransform;
+    private Double roadwayTotalTransformPre;
     private Double stepPressure;
     private Date updateTime;
+
+    public VariableData(Double roadwayDepth, Double roadwayTotalTransform, Double roadwayTotalTransformPre, Double stepPressure, Date updateTime) {
+        this.roadwayDepth = roadwayDepth;
+        this.roadwayTotalTransform = roadwayTotalTransform;
+        this.roadwayTotalTransformPre = roadwayTotalTransformPre;
+        this.stepPressure = stepPressure;
+        this.updateTime = updateTime;
+    }
 }

@@ -1,6 +1,5 @@
 package com.fuswx.deformation_monitoring_system.Bean;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +14,7 @@ public class ReflectData {
     private Integer id;
     private String roadwayDepthMeasure;
     private Double roadwayDepthWeight;
+    private String roadwayAngleMeasure;
     private String roadwayShapeMeasure;
     private Double roadwayShapeWeight;
     private String pillarWidthMeasure;
@@ -27,6 +27,8 @@ public class ReflectData {
     private Double workingFacePressWeight;
     private String stepPressureMeasure;
     private Double stepPressureWeight;
+    private String gMeasure;
+    private Double gWeight;
     private Integer updateManagerId;
     private Date updateTime;
 }

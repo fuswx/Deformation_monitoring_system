@@ -7,7 +7,7 @@
         <packaging>war</packaging>
       </options>
     </properties>
-    <root id="archive" name="Deformation_monitoring_system-0.0.1-SNAPSHOT.war">
+    <root id="archive" name="monitorSystem.war">
       <element id="artifact" artifact-name="Deformation_monitoring_system:war exploded" />
     </root>
   </artifact>

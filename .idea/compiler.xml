@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Deformation_monitoring_system" target="17" />
+      <module name="Deformation_monitoring_system" target="16" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

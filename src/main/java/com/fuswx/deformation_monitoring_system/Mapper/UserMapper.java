@@ -16,7 +16,7 @@ public interface UserMapper {
     void invokeUserByUserName(String userName, String limits);
 
     @Insert("insert into users (username,password,addtime,updatetime,limits) values(#{userName},#{password},#{addTime},#{updateTime},#{limits})")
-    void saveUser(User user);
+    Integer saveUser(User user);
 
     @Update("delete from users where username=#{userName}")
     void deleteUserByName(String userName);
@@ -26,4 +26,10 @@ public interface UserMapper {
 
     @Select("select * from users")
     ArrayList<User> getAllUserByUserName();
+
+    @Select("select id,username,addtime,updatetime,limits from users")
+    ArrayList<User> getAllUser();
+
+    @Update("update users set limits=#{limits} where id=#{id}")
+    Integer invokeUserById(Integer id, String limits);
 }

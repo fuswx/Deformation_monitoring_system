@@ -14,8 +14,16 @@ spring:
   main:
     allow-circular-references: true
 
+#pagehelper:
+#  reasonable: true
+#  support-methods-arguments: true
+
 server:
   servlet:
-    context-path: /
+    context-path: /monitorSystem
+
+    encoding:
+      force: true
+      charset: UTF-8
   port: 8848
 
