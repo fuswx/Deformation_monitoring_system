@@ -53,4 +53,7 @@ public interface DeviceMapper {
 
     @Select("select count(id) from reflectdata")
     Integer getAllReflectDataCount();
+
+    @Select("select count(id) from fixdata")
+    Integer getAllFixDataCount();
 }

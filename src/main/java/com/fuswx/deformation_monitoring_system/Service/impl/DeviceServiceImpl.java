@@ -187,6 +187,7 @@ public class DeviceServiceImpl implements IDeviceService {
         PageInfo<LinkedHashMap<String, String>> pageInfo=new PageInfo<>(allHashMapReflectData);
         pageInfo.setTotal(totalCount);
         pageInfo.setPageSize(pageSize);
+        pageInfo.setPageNum(pageNum);
         pageInfo.setPages(totalCount%pageSize==0?totalCount/pageSize:totalCount/pageSize+1);
         return pageInfo;
     }
@@ -196,6 +197,7 @@ public class DeviceServiceImpl implements IDeviceService {
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         PageHelper.startPage(pageNum,pageSize);
         ArrayList<FixData> allFixData=deviceMapper.getAllFixData();
+        Integer totalCount=deviceMapper.getAllFixDataCount();
         ArrayList<LinkedHashMap<String,String>> allHashMapFixData=new ArrayList<>();
         for (FixData fixData: allFixData) {
             LinkedHashMap<String,String> hashMap=new LinkedHashMap<>();
@@ -216,6 +218,10 @@ public class DeviceServiceImpl implements IDeviceService {
             allHashMapFixData.add(hashMap);
         }
         PageInfo<LinkedHashMap<String, String>> pageInfo=new PageInfo<>(allHashMapFixData);
+        pageInfo.setTotal(totalCount);
+        pageInfo.setPageSize(pageSize);
+        pageInfo.setPageNum(pageNum);
+        pageInfo.setPages(totalCount%pageSize==0?totalCount/pageSize:totalCount/pageSize+1);
         return pageInfo;
     }
 

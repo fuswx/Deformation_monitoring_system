@@ -33,7 +33,7 @@ public class UserController {
     public ModelAndView getAllUser(@RequestParam(name = "pageNum",defaultValue = "1")Integer pageNum,
                                      @RequestParam(name = "pageSize",defaultValue = "10")Integer pageSize){
         ModelAndView modelAndView=new ModelAndView();
-        modelAndView.addObject("users",userService.getAllUser(pageNum,pageSize));
+        modelAndView.addObject("pageInfo",userService.getAllUser(pageNum,pageSize));
         modelAndView.setViewName("/pages/account/user");
         return modelAndView;
     }

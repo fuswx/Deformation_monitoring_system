@@ -66,7 +66,7 @@ $(document).ready(function(){
 
     $(".apage").each(function (i,e){
         $(e).removeClass('active')
-        if (window.location.href===$(e).prop("href")) {
+        if ($(e).prop("href")===(window.location.href.split("?")[0])) {
             $(e).addClass('active')
             $(e).parent().parent().parent().children().each((index,child)=>{
                 $(child).addClass('active')

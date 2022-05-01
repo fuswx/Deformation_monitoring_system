@@ -1,0 +1,120 @@
+@keyframes gradient-move-from {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+@keyframes gradient-move-to {
+  0% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+.fix-large {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+}
+body {
+  animation-iteration-count: 1;
+  background: linear-gradient(185deg, #fff 40%, cornflowerblue 100%) fixed;
+  background-size: 200% 200%;
+}
+body #outBox {
+  display: flex;
+}
+body #outBox .line-title {
+  text-align: center;
+  margin: 10px auto;
+  align-content: center;
+  font-weight: 700;
+  font-size: 20px;
+}
+body #outBox .line-title-small {
+  text-align: center;
+  margin: 5px auto;
+  align-content: center;
+  font-weight: 600;
+  font-size: 14px;
+  flex: 1;
+}
+body #outBox .firstLine {
+  display: flex;
+  border-bottom: 5px solid cornflowerblue;
+}
+body #outBox .firstLine .line-title {
+  flex: 1;
+}
+body #outBox .contentLine .contentLines {
+  height: 50px;
+  line-height: 50px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+}
+body #outBox .contentLine .contentLines .contentLinesLeft {
+  flex: 1;
+}
+body #outBox .contentLine .contentLines .contentLinesRight {
+  flex: 1;
+}
+body #outBox .contentLine .contentLines .contentLinesRight .line-measure #pageSplice {
+  float: right;
+  margin-right: 20px;
+}
+body #outBox .contentLine .contentLines .textInputNone {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0);
+  color: #4c4f52;
+}
+body #outBox .contentLine .contentLines span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+}
+body #outBox .contentLine .contentLines:last-child {
+  margin-bottom: 0;
+}
+body #outBox .contentLine .noneBottomBorder {
+  border-bottom: none;
+}
+body #outBox .contentLine #formSubmit {
+  margin-left: 10px;
+  float: right;
+  margin-right: 30px;
+}
+body #outBox .contentLine #methodHistoryLook,
+body #outBox .contentLine #valueHistoryLook {
+  float: left;
+}
+body #outBox #leftContent {
+  flex: 1;
+  background-color: rgba(0, 0, 0, 0);
+  border-right: 5px solid rgba(255, 255, 255, 0.3);
+  height: 100%;
+}
+body #outBox #rightContent {
+  flex: 1;
+  background-color: rgba(0, 0, 0, 0);
+  height: 100%;
+}
+body #line-measure {
+  display: block;
+  position: fixed;
+  bottom: 2%;
+}
+.inputDisable {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+/*# sourceMappingURL=configuration.css.map */

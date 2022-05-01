@@ -1,0 +1,145 @@
+@keyframes gradient-move-from {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+@keyframes gradient-move-to {
+  0% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+.fix-large {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+}
+
+body {
+  animation-iteration-count:1;
+  background: linear-gradient(185deg,#fff 40%,cornflowerblue 100%) fixed;
+  background-size: 200% 200%;
+
+  #outBox {
+    display: flex;
+
+    .line-title {
+      text-align: center;
+      margin: 10px auto;
+      align-content: center;
+      font-weight: 700;
+      font-size: 20px;
+    }
+    .line-title-small {
+      text-align: center;
+      margin: 5px auto;
+      align-content: center;
+      font-weight: 600;
+      font-size: 14px;
+      flex: 1;
+    }
+
+    .firstLine {
+      display: flex;
+      border-bottom: 5px solid cornflowerblue;
+
+      .line-title {
+        flex: 1;
+      }
+    }
+
+    .contentLine {
+
+      .contentLines {
+        height: 50px;
+        line-height: 50px;
+        border-bottom: 2px solid rgba(255,255,255,0.3);
+        display: flex;
+
+        .contentLinesLeft {
+          flex: 1;
+        }
+        .contentLinesRight {
+          flex: 1;
+
+          .line-measure {
+
+            #pageSplice {
+              float: right;
+              margin-right: 20px;
+            }
+          }
+        }
+
+        .textInputNone {
+          width: 100%;
+          height: 100%;
+          border: none;
+          outline: none;
+          text-align: center;
+          background-color: rgba(0,0,0,0);
+          color: #4c4f52;
+        }
+
+        span {
+          display: block;
+          width: 100%;
+          height: 100%;
+          text-align: center;
+          font-size: 16px;
+          font-weight: 600;
+        }
+
+      }
+
+      .contentLines:last-child {
+        margin-bottom: 0;
+      }
+
+      .noneBottomBorder {
+        border-bottom: none;
+      }
+      #formSubmit {
+        margin-left: 10px;
+        float: right;
+        margin-right: 30px
+      }
+      #methodHistoryLook,#valueHistoryLook {
+      float: left;
+    }
+
+    }
+
+    #leftContent {
+      flex: 1;
+      background-color: rgba(0,0,0,0);
+      border-right: 5px solid rgba(255,255,255,0.3);
+      height: 100%;
+    }
+
+    #rightContent {
+      flex: 1;
+      background-color: rgba(0,0,0,0);
+      height: 100%;
+    }
+  }
+
+  #line-measure {
+    display: block;
+    position: fixed;
+    bottom: 2%;
+
+
+  }
+}
+
+.inputDisable {
+  background-color: rgba(255,255,255,0.2) !important;
+}
