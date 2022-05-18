@@ -2,6 +2,7 @@ package com.fuswx.deformation_monitoring_system.Service.impl;
 
 import com.fuswx.deformation_monitoring_system.Bean.*;
 import com.fuswx.deformation_monitoring_system.Mapper.DeviceMapper;
+import com.fuswx.deformation_monitoring_system.Mapper.UserMapper;
 import com.fuswx.deformation_monitoring_system.Service.IDeviceService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -20,6 +21,9 @@ public class DeviceServiceImpl implements IDeviceService {
 
     @Autowired
     private DeviceMapper deviceMapper;
+
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
     public ArrayList<VariableData> getAllVariableData() {
@@ -168,7 +172,12 @@ public class DeviceServiceImpl implements IDeviceService {
         for (ReflectData reflectData: allReflectData) {
             LinkedHashMap<String,String> hashMap=new LinkedHashMap<>();
             Field[] fields=reflectData.getClass().getDeclaredFields();
+            //Integer index=0;
             for (ChineseEnglishMapping chineseEnglishMapping : reflectAllChinese) {
+//                if (index>=9){
+//                    break;
+//                }
+//                index++;
                 for (Field field : fields) {
                     field.setAccessible(true);
                     if (field.getName().toLowerCase(Locale.ROOT).startsWith(chineseEnglishMapping.getEnglish())&&field.getName().toLowerCase(Locale.ROOT).endsWith(xxxx)){
@@ -182,6 +191,9 @@ public class DeviceServiceImpl implements IDeviceService {
                     }
                 }
             }
+            SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            hashMap.put("设置时间",simpleDateFormat.format(reflectData.getUpdateTime()));
+            hashMap.put("设置人账号",userMapper.getUserByUserId(reflectData.getUpdateManagerId()).getUserName().toString());
             allHashMapReflectData.add(hashMap);
         }
         PageInfo<LinkedHashMap<String, String>> pageInfo=new PageInfo<>(allHashMapReflectData);
@@ -199,22 +211,29 @@ public class DeviceServiceImpl implements IDeviceService {
         ArrayList<FixData> allFixData=deviceMapper.getAllFixData();
         Integer totalCount=deviceMapper.getAllFixDataCount();
         ArrayList<LinkedHashMap<String,String>> allHashMapFixData=new ArrayList<>();
+        ArrayList<ChineseEnglishMapping> reflectAllChinese=deviceMapper.getAllRelectChinese();
         for (FixData fixData: allFixData) {
             LinkedHashMap<String,String> hashMap=new LinkedHashMap<>();
             Field[] fields=fixData.getClass().getDeclaredFields();
-            for (Field field : fields) {
-                field.setAccessible(true);
-                try {
-                    String content="";
-                    content=field.get(fixData)==null?"":field.get(fixData).toString();
-                    if (field.get(fixData) instanceof Date){
-                        content=simpleDateFormat.format(new Date(content));
+            for (ChineseEnglishMapping chineseEnglishMapping:reflectAllChinese) {
+                for (Field field : fields) {
+                    field.setAccessible(true);
+                    if (field.getName().toLowerCase(Locale.ROOT).startsWith(chineseEnglishMapping.getEnglish())){
+                        try {
+                            String content="";
+                            content=field.get(fixData)==null?"":field.get(fixData).toString();
+//                            if (field.get(fixData) instanceof Date){
+//                                content=simpleDateFormat.format(new Date(content));
+//                            }
+                            hashMap.put(chineseEnglishMapping.getChinese(),content);
+                        } catch (IllegalAccessException e) {
+                            e.printStackTrace();
+                        }
                     }
-                    hashMap.put(field.getName(),content);
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
                 }
             }
+            hashMap.put("设置时间",simpleDateFormat.format(fixData.getFixTime()));
+            hashMap.put("设置人账号", userMapper.getUserByUserId(fixData.getFixManagerId()).getUserName().toString());
             allHashMapFixData.add(hashMap);
         }
         PageInfo<LinkedHashMap<String, String>> pageInfo=new PageInfo<>(allHashMapFixData);

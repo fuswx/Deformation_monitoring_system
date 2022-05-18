@@ -32,4 +32,7 @@ public interface UserMapper {
 
     @Update("update users set limits=#{limits} where id=#{id}")
     Integer invokeUserById(Integer id, String limits);
+
+    @Select("select * from users where id=#{id}")
+    User getUserByUserId(Integer id);
 }

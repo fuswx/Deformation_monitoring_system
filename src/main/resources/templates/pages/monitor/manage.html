@@ -4,11 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <title>监测管理</title>
-    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js" type="text/javascript"></script>
+<!--    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js" type="text/javascript"></script>-->
+<!--    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js" type="text/javascript"></script>-->
 <!--    <script src="/js/echarts.min.js" th:src="@{/js/echarts.min.js}" type="text/javascript"></script>-->
+    <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/echarts/5.3.0-rc.1/echarts.min.js" type="text/javascript"></script>
+
 
     <style th:replace="common::common_header"></style>
     <link rel="stylesheet" th:href="@{/css/monitor/monitor.css}">
+
+    <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
+    <script src="https://unpkg.com/video.js/dist/video.js"></script>
+    <script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>
+
+<!--    <link href="https://unpkg.com/video.js@5.16.0/dist/video-js.css" rel="stylesheet">-->
+<!--    <script src="https://unpkg.com/video.js@5.16.0/dist/video.js"></script>-->
+<!--    <script src="https://unpkg.com/videojs-contrib-hls@4.1.1/dist/videojs-contrib-hls.js"></script>-->
+
 </head>
 <body>
 <!--导航栏-->
@@ -42,7 +54,15 @@
         </div>
         <div class="secondLine">
             <div class="title-panel">实时工作状态</div>
-            <div class="realTime" id="realTime"></div>
+            <div class="realTime" id="realTime">
+                <video autoplay="autoplay"
+                    class="video-js vjs-default-skin vjs-big-play-centered" controls
+                    data-setup='{}' height="220" id="liveVideo" muted
+                    preload="auto" width="280">
+                    <!--src: 规定媒体文件的 URL  type:规定媒体资源的类型-->
+                    <source src='http://live.fuswx.cn/live/monitor.m3u8' type='application/x-mpegURL' />
+                </video>
+            </div>
             <div class="text-content">
                 <div class="macStatus" id="macStatus"></div>
             </div>
@@ -74,5 +94,28 @@
 </div>
 
 <script src="/js/monitor/monitor.js" th:src="@{/js/monitor/monitor.js}" type="text/javascript"></script>
+
+<script>
+    // videojs 简单使用
+    var myVideo = videojs('liveVideo', {
+        bigPlayButton: true,
+        textTrackDisplay: false,
+        posterImage: false,
+        errorDisplay: false,
+    })
+    myVideo.play()
+    var changeVideo = function (vdoSrc) {
+        if (/\.m3u8$/.test(vdoSrc)) { //判断视频源是否是m3u8的格式
+            myVideo.src({
+                src: vdoSrc,
+                type: 'application/x-mpegURL' //在重新添加视频源的时候需要给新的type的值
+            })
+        } else {
+            myVideo.src(vdoSrc)
+        }
+        myVideo.load();
+        myVideo.play();
+    }
+</script>
 </body>
 </html>

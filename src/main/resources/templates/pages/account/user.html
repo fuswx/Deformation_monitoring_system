@@ -48,7 +48,7 @@
                         </div>
                         <div class="contentLinesLeft">
                             <span class="line-measure">
-                                <div class="field">
+                                <div class="field" id="select-field">
                                     <select class="ui fluid dropdown textInputNone" id="invokeSelect" th:redata="${user.id}">
                                         <option th:selected="${user.limits}=='root'" value="root">root</option>
                                         <option th:selected="${user.limits}=='account'" value="account">account</option>
@@ -56,12 +56,13 @@
                                         <option th:selected="${user.limits}=='project'" value="project">project</option>
                                     </select>
                                 </div>
-<!--                                <input class="textInputNone" type="text"  th:value="${user.limits}">-->
                             </span>
                         </div>
                     </div>
-                    <div class="contentLines noneBottomBorder">
-                        <div class="contentLinesRight">
+                </div>
+            </form>
+            <div class="contentLines noneBottomBorder">
+                <div class="contentLinesRight">
                             <span class="line-measure">
                                 <div class="ui animated fade button" id="returnLast" style="float: right;margin-right: 10px" tabindex="0">
                                     <div class="visible content">返回</div>
@@ -77,10 +78,8 @@
                                     <a th:href="'?pageNum='+${pageInfo.getPages()}+'&pageSize='+${pageInfo.getPageSize()}"><button class="ui button fix-large"><i class="fast forward icon"></i></button></a>
                                 </div>
                             </span>
-                        </div>
-                    </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
@@ -88,5 +87,10 @@
 
 <script th:src="@{/js/account/configuration.js}" type="text/javascript"></script>
 <script th:src="@{/js/account/user.js}" type="text/javascript"></script>
+<script>
+    $(()=>{
+        $(".ui .dropdown").dropdown()
+    })
+</script>
 </body>
 </html>

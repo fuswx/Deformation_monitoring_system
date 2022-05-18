@@ -11,6 +11,9 @@ $(()=>{
         }
     },5000)
 
+    //设置登录组件位置
+    $(".form-signin").css("left",($(".login-body").width()-$(".form-signin").width())/2)
+
     //切换登录与注册页面
     $("#btn-register").click(()=>{
         $("#form-login").transition('horizontal flip')

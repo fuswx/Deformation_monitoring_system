@@ -18,6 +18,11 @@ public class FixData {
     private Double roadwaySizeTotal;
     private Double pillarWidth;
     private Double g;
+    private Double stratumThickness;
+    private Double stratumAngle;
+    private Double topRockLayers;
+    private Double topRockThickness;
+    private Double rockFissures;
     @DateTimeFormat(pattern = "yyyy年MM月dd日 HH:mm:ss")
     private Date FixTime;
     private Integer FixManagerId;

@@ -48,12 +48,15 @@ $(()=>{
         }
     })
 
-    $("#reflectHistoryLook").click(()=>{
-        window.location.href="/account/reflectHistory"
+    $("#methodHistory").click(()=>{
+        window.location.href="reflectMeasureHistory"
     })
 
-    $("#fixHistoryLook").click(()=>{
-        window.location.href="/account/fixHistory"
+    $("#weightHistory").click(()=>{
+        window.location.href="reflectMeasureHistory"
+    })
+    $("#valueHistory").click(()=>{
+        window.location.href="fixHistory"
     })
 
     $("#returnLast").click(()=>{

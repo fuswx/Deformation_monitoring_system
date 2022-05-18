@@ -20,6 +20,11 @@
   height: 35px;
   line-height: 35px;
 }
+.button-choose {
+  background-color: cornflowerblue!important;
+  color: #f3f3f3 !important;
+  transition: all linear 0.5s;
+}
 body {
   animation-iteration-count: 1;
   background: linear-gradient(185deg, #fff 40%, cornflowerblue 100%) fixed;
@@ -50,23 +55,23 @@ body #outBox .firstLine {
 body #outBox .firstLine .line-title {
   flex: 1;
 }
-body #outBox .contentLine .contentLines {
+body #outBox .contentLines {
   height: 50px;
   line-height: 50px;
   border-bottom: 2px solid rgba(255, 255, 255, 0.3);
   display: flex;
 }
-body #outBox .contentLine .contentLines .contentLinesLeft {
+body #outBox .contentLines .contentLinesLeft {
   flex: 1;
 }
-body #outBox .contentLine .contentLines .contentLinesRight {
+body #outBox .contentLines .contentLinesRight {
   flex: 1;
 }
-body #outBox .contentLine .contentLines .contentLinesRight .line-measure #pageSplice {
+body #outBox .contentLines .contentLinesRight .line-measure #pageSplice {
   float: right;
   margin-right: 20px;
 }
-body #outBox .contentLine .contentLines .textInputNone {
+body #outBox .contentLines .textInputNone {
   width: 100%;
   height: 100%;
   border: none;
@@ -75,7 +80,7 @@ body #outBox .contentLine .contentLines .textInputNone {
   background-color: rgba(0, 0, 0, 0);
   color: #4c4f52;
 }
-body #outBox .contentLine .contentLines span {
+body #outBox .contentLines span {
   display: block;
   width: 100%;
   height: 100%;
@@ -83,28 +88,27 @@ body #outBox .contentLine .contentLines span {
   font-size: 16px;
   font-weight: 600;
 }
-body #outBox .contentLine .contentLines:last-child {
+body #outBox .contentLines:last-child {
   margin-bottom: 0;
 }
-body #outBox .contentLine .noneBottomBorder {
+body #outBox .noneBottomBorder {
   border-bottom: none;
 }
-body #outBox .contentLine #formSubmit {
-  margin-left: 10px;
+body #outBox #formSubmit {
+  margin: 10px 10px 30px 0px;
   float: right;
-  margin-right: 30px;
 }
-body #outBox .contentLine #methodHistoryLook,
-body #outBox .contentLine #valueHistoryLook {
+body #outBox #methodHistoryLook,
+body #outBox #valueHistoryLook {
   float: left;
 }
-body #outBox #leftContent {
+body #leftContent {
   flex: 1;
   background-color: rgba(0, 0, 0, 0);
   border-right: 5px solid rgba(255, 255, 255, 0.3);
   height: 100%;
 }
-body #outBox #rightContent {
+body #rightContent {
   flex: 1;
   background-color: rgba(0, 0, 0, 0);
   height: 100%;

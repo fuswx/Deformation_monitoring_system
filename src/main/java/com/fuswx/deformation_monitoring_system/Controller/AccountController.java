@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
 @Controller
@@ -36,11 +36,7 @@ public class AccountController {
     @PostMapping(value = "/setReflectData.do")
     @ResponseBody
     public Integer setReflectData(@RequestBody String reflectDataStr){
-        try {
-            reflectDataStr= URLDecoder.decode(reflectDataStr,"UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        reflectDataStr= URLDecoder.decode(reflectDataStr, StandardCharsets.UTF_8);
         reflectDataStr=reflectDataStr.split("=")[1];
         FixData fixData=JSONObject.parseObject(reflectDataStr,FixData.class);
         ReflectData reflectData=JSONObject.parseObject(reflectDataStr,ReflectData.class);

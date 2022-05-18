@@ -22,31 +22,29 @@
             <div class="contentLine">
                 <div class="contentLines" th:each="hashMapData:${pageInfo.getList()}">
                     <div class="contentLinesLeft" th:each="hashMapDataKeySet:${hashMapData.keySet()}">
-                            <span class="line-measure">
-                                <input class="textInputNone" disabled="true" th:value="${hashMapData.get(hashMapDataKeySet)}"
-                                       type="text">
-                            </span>
+                        <span class="line-measure">
+                            <input class="textInputNone" disabled="true" th:value="${hashMapData.get(hashMapDataKeySet)}" type="text">
+                        </span>
                     </div>
                 </div>
-                <div class="contentLines noneBottomBorder">
-                    <div class="contentLinesRight">
-                            <span class="line-measure">
-                                <div class="ui animated fade button" id="returnLast" style="float: right;margin-right: 10px" tabindex="0">
-                                    <div class="visible content">返回</div>
-                                    <div class="hidden content">
-                                        <i class="left reply icon"></i>
-                                    </div>
-                                </div>
-
-                                <div class="ui icon buttons" id="pageSplice">
-                                    <a th:href="'?pageNum=1&pageSize='+${pageInfo.getPageSize()}"><button class="ui button fix-large"><i class="fast backward icon"></i></button></a>
-                                    <a th:href="'?pageNum='+${pageInfo.getPageNum()-1<=0?1:pageInfo.getPageNum()-1}+'&pageSize='+${pageInfo.getPageSize()}"><button class="ui button fix-large"><i class="chevron left icon"></i></button></a>
-                                    <a th:each="number:${#numbers.sequence(1, pageInfo.getPages())}" th:href="'?pageNum='+${number}+'&pageSize='+${pageInfo.getPageSize()}"><button class="ui button fix-large" th:classappend="${number==pageInfo.getPageNum()}?'button-choose':''" th:text="${number}"></button></a>
-                                    <a th:href="'?pageNum='+${pageInfo.getPageNum()+1>pageInfo.getPages()?pageInfo.getPages():pageInfo.getPageNum()+1}+'&pageSize='+${pageInfo.getPageSize()}"><button class="ui button fix-large"><i class="chevron right icon"></i></button></a>
-                                    <a th:href="'?pageNum='+${pageInfo.getPages()}+'&pageSize='+${pageInfo.getPageSize()}"><button class="ui button fix-large"><i class="fast forward icon"></i></button></a>
-                                </div>
-                            </span>
-                    </div>
+            </div>
+            <div class="contentLines noneBottomBorder">
+                <div class="contentLinesRight">
+                    <span class="line-measure">
+                        <div class="ui animated fade button" id="returnLast" style="float: right;margin-right: 10px" tabindex="0">
+                            <div class="visible content">返回</div>
+                            <div class="hidden content">
+                                <i class="left reply icon"></i>
+                            </div>
+                        </div>
+                        <div class="ui icon buttons" id="pageSplice">
+                            <a th:href="'?pageNum=1&pageSize='+${pageInfo.getPageSize()}"><button class="ui button fix-large"><i class="fast backward icon"></i></button></a>
+                            <a th:href="'?pageNum='+${pageInfo.getPageNum()-1<=0?1:pageInfo.getPageNum()-1}+'&pageSize='+${pageInfo.getPageSize()}"><button class="ui button fix-large"><i class="chevron left icon"></i></button></a>
+                            <a th:each="number:${#numbers.sequence(1, pageInfo.getPages())}" th:href="'?pageNum='+${number}+'&pageSize='+${pageInfo.getPageSize()}"><button class="ui button fix-large" th:classappend="${number==pageInfo.getPageNum()}?'button-choose':''" th:text="${number}"></button></a>
+                            <a th:href="'?pageNum='+${pageInfo.getPageNum()+1>pageInfo.getPages()?pageInfo.getPages():pageInfo.getPageNum()+1}+'&pageSize='+${pageInfo.getPageSize()}"><button class="ui button fix-large"><i class="chevron right icon"></i></button></a>
+                            <a th:href="'?pageNum='+${pageInfo.getPages()}+'&pageSize='+${pageInfo.getPageSize()}"><button class="ui button fix-large"><i class="fast forward icon"></i></button></a>
+                        </div>
+                    </span>
                 </div>
             </div>
         </div>

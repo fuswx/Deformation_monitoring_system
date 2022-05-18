@@ -15,7 +15,7 @@ public interface DeviceMapper {
     @Select("select * from variabledata where updatetime >= date_format(#{fromTime},'%Y-%m-%d %H:%i:%s') and updatetime <= date_format(#{toTime},'%Y-%m-%d %H:%i:%s')")
     ArrayList<VariableData> getVariableDataByDay(Date fromTime, Date toTime);
 
-    @Insert("insert into variabledata values(null,#{roadwayDepth},#{crossHeadingPress},#{workingFacePress},#{predictValue},#{stepPressure},#{updateTime})")
+    @Insert("insert into variabledata values(null,#{roadwayDepth},#{crossHeadingPress},#{workingFacePress},#{roadwayTotalTransform},#{roadwayTotalTransformPre},#{stepPressure},#{updateTime})")
     void setVariableData(VariableData variableData);
 
     @Select("select * from reflectdata")
@@ -24,7 +24,9 @@ public interface DeviceMapper {
     @Select("select * from reflectdata where id=(select max(id) from reflectdata)")
     ReflectData getLastReflectData();
 
-    @Insert("insert into reflectdata values(null,#{roadwayDepthMeasure},#{roadwayDepthWeight},#{roadwayDepthMeasure},#{roadwayShapeMeasure},#{roadwayShapeWeight},#{pillarWidthMeasure},#{pillarWidthWeight},#{roadwaySizeTotalMeasure},#{roadwaySizeTotalWeight},#{crossHeadingPressMeasure},#{crossHeadingPressWeight},#{workingFacePressMeasure},#{workingFacePressWeight},#{stepPressureMeasure},#{stepPressureWeight},#{gMeasure},#{gWeight},#{updateManagerId},#{updateTime})")
+    @Insert("insert into reflectdata values(null,#{roadwayDepthMeasure},#{roadwayDepthWeight},#{roadwayAngleMeasure},#{roadwayShapeMeasure},#{roadwayShapeWeight},#{pillarWidthMeasure},#{pillarWidthWeight},#{roadwaySizeTotalMeasure},#{roadwaySizeTotalWeight},#{crossHeadingPressMeasure},#{crossHeadingPressWeight},#{workingFacePressMeasure},#{workingFacePressWeight},#{stepPressureMeasure},#{stepPressureWeight},#{gMeasure},#{gWeight}," +
+            "#{stratumThicknessMeasure},#{stratumThicknessWeight},#{stratumAngleMeasure},#{stratumAngleWeight},#{topRockLayersMeasure},#{topRockLayersWeight},#{topRockThicknessMeasure},#{topRockThicknessWeight},#{rockFissuresMeasure},#{rockFissuresWeight}," +
+            "#{updateManagerId},#{updateTime})")
     Integer setReflectData(ReflectData reflectData);
 
     @Select("select * from fixdata")
@@ -33,7 +35,9 @@ public interface DeviceMapper {
     @Select("select * from fixdata where id=(select max(id) from fixdata)")
     FixData getLastFixData();
 
-    @Insert("insert into fixdata values(null,#{roadwayAngle},#{roadwayShape},#{roadwaySizeTotal},#{pillarWidth},#{g},#{FixTime},#{FixManagerId})")
+    @Insert("insert into fixdata values(null,#{roadwayAngle},#{roadwayShape},#{roadwaySizeTotal},#{pillarWidth},#{g}," +
+            "#{stratumThickness},#{stratumAngle},#{topRockLayers},#{topRockThickness},#{rockFissures}," +
+            "#{FixTime},#{FixManagerId})")
     Integer setFixData(FixData fixData);
 
     @Select("select chinese,english from reflectchinese")

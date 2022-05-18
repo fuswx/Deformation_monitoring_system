@@ -29,6 +29,16 @@ public class ReflectData {
     private Double stepPressureWeight;
     private String gMeasure;
     private Double gWeight;
+    private String stratumThicknessMeasure;
+    private Double stratumThicknessWeight;
+    private String stratumAngleMeasure;
+    private Double stratumAngleWeight;
+    private String topRockLayersMeasure;
+    private Double topRockLayersWeight;
+    private String topRockThicknessMeasure;
+    private Double topRockThicknessWeight;
+    private String rockFissuresMeasure;
+    private Double rockFissuresWeight;
     private Integer updateManagerId;
     private Date updateTime;
 }

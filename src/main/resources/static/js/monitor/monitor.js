@@ -1,7 +1,6 @@
 let chartResizeInterval=null;
 
-const projectName="";
-
+const projectName="/monitorSystem/";
 
 let roadwayTotalTransform=[]
 let updateTime=[]
@@ -17,10 +16,12 @@ let alertValue=[0.75,60,50]
 let alertFlagPro=false
 let alertFlagClose=false
 
-
 let macStatusValue=[]
+let macStatusValueChinese=['电量','风速','温度','瓦斯浓度']
 const days=[0,1,2,3,4,5,6,7]
 const days2=[0,1,2,3,4,5,6]
+
+let labelMeasure=['%','t','°C','%']
 
 //日期格式化
 function timeStampString(time){
@@ -38,6 +39,10 @@ $(function (){
     //页面加载完成首先更新一次图表
     setChart();
 
+    //直播尺寸初始化
+    $("#liveVideo").width($("#realTime").width())
+    $("#liveVideo").height($("#realTime").height())
+
     //设置定时器为5秒钟更新一次数据
     setInterval(()=>{
         setChart()
@@ -50,7 +55,7 @@ $(function (){
         alertFlagPro=false
         setTimeout(()=>{
             alertFlagClose=false
-        },1000*10)
+        },1000*60)
         $(".showBtnBox").transition('fade left')
     })
 
@@ -67,7 +72,7 @@ $(function (){
 
 function getDataByPost(){
     $.ajax({
-        url: "/monitorSystem/device/getLastWorkingStatus.do",
+        url: projectName+"device/getLastWorkingStatus.do",
         dataType: 'JSON',
         method: "post",
         contentType: "application/json",
@@ -83,7 +88,7 @@ function getDataByPost(){
         }
     })
     $.ajax({
-        url: "/monitorSystem/device/getByDaysVariableData.do",
+        url: projectName+"device/getByDaysVariableData.do",
         dataType: 'JSON',
         method: "post",
         contentType: "application/json",
@@ -152,7 +157,7 @@ function setChart(){
 
     getDataByPost()
 
-    let myColor = ["#00c1de", "#F57474", "#F8B448", "#8B78F6"];
+    let myColor = ["rgb(1,120,255)", "#F57474", "#F8B448", "#7898f6"];
 
     macStatusValue[3]*=100
 
@@ -197,7 +202,7 @@ function setChart(){
                 for (let i = 0; i < params.length; i++) {
                     let str=''
                     for (let j = 0; j < option1.series[0].data.length; j++) {
-                        str="<div>"+timeStampString(updateTime[j]) +"</div>"
+                        str="<div>"+timeStampString(updateTime[params[i].dataIndex]) +"</div>"
                             +"<div style='width: 10px;height: 10px;display: inline-block;background-color:rgb(176,151,243) '></div> 巷道埋深:"+roadwayDepth[params[i].dataIndex]+"m"+"<br/><div style='width: 10px;height: 10px;display: inline-block;background-color:rgb(1,120,255) '></div> 巷道累计变形量:"+roadwayTotalTransform[params[i].dataIndex]+"m";
                     }
                     return str
@@ -369,7 +374,7 @@ function setChart(){
                 for (let i = 0; i < params.length; i++) {
                     let str=''
                     for (let j = 0; j < option1.series[0].data.length; j++) {
-                        str="<div>"+timeStampString(updateTime[j]) +"</div>"
+                        str="<div>"+timeStampString(updateTime[params[i].dataIndex]) +"</div>"
                             +"<div style='width: 10px;height: 10px;display: inline-block;background-color:rgb(1,120,255) '></div> 工作面矿压:"+workingFacePress[params[i].dataIndex]+"MPa"+"<br/><div style='width: 10px;height: 10px;display: inline-block;background-color:rgb(176,151,243) '></div> 顺槽小煤柱矿压:"+crossHeadingPress[params[i].dataIndex]+"KN";
                     }
                     return str
@@ -548,7 +553,7 @@ function setChart(){
             {
                 inverse:true,
                 type: 'category',
-                data: ['电量','风速','温度','瓦斯浓度'],
+                data: macStatusValueChinese,
                 //不显示y轴的线
                 axisLine: {
                     show: false
@@ -582,13 +587,13 @@ function setChart(){
         ],
         series: [
             {
-                name: '条',
+                name: '数值',
                 type: 'bar',
                 data: macStatusValue,
                 //柱子之间的距离
                 barCategoryGap:50,
                 //柱子的高度
-                barWidth:10,
+                barWidth:14,
                 yAxisIndex:0,
                 //修改第一组柱子的圆角
                 itemStyle:{
@@ -606,23 +611,11 @@ function setChart(){
                         //图形内显示
                         position: 'inside',
                         //{c}会自动解析为数据，是data里面的数字
-                        formatter:"{c}%",
+                        formatter:(value)=>{
+                            return value.dataIndex===3?macStatusValue[value.dataIndex]/100+labelMeasure[value.dataIndex]:macStatusValue[value.dataIndex]+labelMeasure[value.dataIndex];
+                        },
                         color:'#fff'
                     }
-                }
-            },
-            {
-                name: '框',
-                type: 'bar',
-                barCategoryGap: 50,
-                barWidth: 17,
-                yAxisIndex:1,
-                data: [100,100,100,100],
-                itemStyle: {
-                    color:'none',
-                    borderColor:'#1089E7',
-                    borderWidth:3,
-                    barBorderRadius: 15
                 }
             }
         ],
@@ -647,6 +640,8 @@ function setChart(){
         myChart2.resize()
         myChart.resize()
         macStatus.resize()
+        $("#liveVideo").width($("#realTime").width())
+        $("#liveVideo").height($("#realTime").height())
     })
 
     if (chartResizeInterval){
@@ -665,6 +660,9 @@ function setChart(){
                 myChart2.setOption(option2)
                 myChart.hideLoading()
                 myChart2.hideLoading()
+                $("#liveVideo").width($("#realTime").width())
+                $("#liveVideo").height($("#realTime").height())
+                macStatus.resize()
             },500)
             $("#leftResizeFlag").text("false")
         }
